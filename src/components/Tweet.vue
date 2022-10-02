@@ -1,38 +1,46 @@
 <template>
-  <div className="tweet">
-    <img
-      src="https://i.imgur.com/9yw1Fyw.jpg"
-      className="profile"
-      alt="profile"
-    />
+  <div class="tweet">
+    <ProfileImage
+      :image="imageFather"
+         />
+    <div class="body">
 
-    <div className="body">
-      <div className="top">
-        <span className="user">
-          <span className="name">Ironhack</span>
-          <span className="handle">@ironhack</span>
-        </span>
-
-        <span className="timestamp">Nov 30, 2020</span>
+      <div class="top">
+        <User :user="userFather" :timestamp="timestampFather" />
       </div>
-
-      <p className="message">
-        On December 7th, we will be hosting a #webinar that will introduce you
-        to #SQL! Are you ready? 🚀
-      </p>
-
-      <div className="actions">
-        <!-- Font Awesome icons -->
-        <i class="far fa-comment"></i>
-        <i class="fas fa-retweet"></i>
-        <i class="far fa-heart"></i>
-        <i class="fas fa-share"></i>
-      </div>
+      <Message v-bind:message="messageFather" />
+      <Actions />
     </div>
-
     <i class="fas fa-ellipsis-h"></i>
   </div>
 </template>
+
+<script setup>
+import Actions from "./Actions.vue";
+import Message from "./Message.vue";
+import Timestamp from "./Timestamp.vue";
+import User from "./User.vue";
+import ProfileImage from "./ProfileImage.vue";
+
+defineProps({
+  messageFather: {
+    type: String,
+  },
+  timestampFather: {
+    type: String,
+  },
+  userFather: {
+    type: Object,
+  },
+  imageFather: {
+    type: String,
+  },
+  imageAltFather: {
+    type: String,
+  },
+});
+</script>
+
 
 <style scoped>
 a {
